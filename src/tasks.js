@@ -2,7 +2,10 @@ const { FieldValue, Timestamp } = require("firebase-admin/firestore");
 const { connectDb } = require("./connectDb");
 
 exports.createTask = (req, res) => {
-  const newTask = req.body;
+  const newTask = {
+    task: req.body.task,
+    done: false
+  }
   const db = connectDb();
   db.collection("tasks")
     .add(newTask)
