@@ -1,7 +1,7 @@
-const express = require('express')
-const cors = require('cors')
+import express from 'express'
+import cors from 'cors'
 const PORT = process.env.PORT || 3000
-const { createTask, getTasks, updateTask } = require('./src/tasks')
+import { createTask, getTasks, getPendingTasks, getCompletedTasks, updateTask } from './src/tasks'
 
 const app = express()
 app.use(cors())
@@ -10,6 +10,8 @@ app.use(express.json())
 //Routes
 app.post('/tasks', createTask)
 app.get('/tasks', getTasks)
+app.get('/tasks/pending', getPendingTasks)
+app.get('/tasks/completed', getCompletedTasks)
 app.patch('/tasks/:taskId', updateTask)
 
 
